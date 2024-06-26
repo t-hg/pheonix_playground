@@ -12,8 +12,6 @@ defmodule PheonixPlaygroundWeb.UserSessionControllerTest do
       conn = get(conn, ~p"/users/log_in")
       response = html_response(conn, 200)
       assert response =~ "Log in"
-      assert response =~ ~p"/users/register"
-      assert response =~ "Forgot your password?"
     end
 
     test "redirects if already logged in", %{conn: conn, user: user} do
@@ -26,7 +24,7 @@ defmodule PheonixPlaygroundWeb.UserSessionControllerTest do
     test "logs the user in", %{conn: conn, user: user} do
       conn =
         post(conn, ~p"/users/log_in", %{
-          "user" => %{"email" => user.email, "password" => valid_user_password()}
+          "user" => %{"name" => user.name, "password" => valid_user_password()}
         })
 
       assert get_session(conn, :user_token)
@@ -35,8 +33,7 @@ defmodule PheonixPlaygroundWeb.UserSessionControllerTest do
       # Now do a logged in request and assert on the menu
       conn = get(conn, ~p"/")
       response = html_response(conn, 200)
-      assert response =~ user.email
-      assert response =~ ~p"/users/settings"
+      assert response =~ user.name
       assert response =~ ~p"/users/log_out"
     end
 
@@ -44,7 +41,7 @@ defmodule PheonixPlaygroundWeb.UserSessionControllerTest do
       conn =
         post(conn, ~p"/users/log_in", %{
           "user" => %{
-            "email" => user.email,
+            "name" => user.name,
             "password" => valid_user_password(),
             "remember_me" => "true"
           }
@@ -60,7 +57,7 @@ defmodule PheonixPlaygroundWeb.UserSessionControllerTest do
         |> init_test_session(user_return_to: "/foo/bar")
         |> post(~p"/users/log_in", %{
           "user" => %{
-            "email" => user.email,
+            "name" => user.name,
             "password" => valid_user_password()
           }
         })
@@ -72,12 +69,12 @@ defmodule PheonixPlaygroundWeb.UserSessionControllerTest do
     test "emits error message with invalid credentials", %{conn: conn, user: user} do
       conn =
         post(conn, ~p"/users/log_in", %{
-          "user" => %{"email" => user.email, "password" => "invalid_password"}
+          "user" => %{"name" => user.name, "password" => "invalid_password"}
         })
 
       response = html_response(conn, 200)
       assert response =~ "Log in"
-      assert response =~ "Invalid email or password"
+      assert response =~ "Invalid name or password"
     end
   end
 

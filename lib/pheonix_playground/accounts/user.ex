@@ -3,11 +3,10 @@ defmodule PheonixPlayground.Accounts.User do
   import Ecto.Changeset
 
   schema "users" do
-    field :email, :string
-    field :password, :string, virtual: true, redact: true
+    field :name, :string
     field :hashed_password, :string, redact: true
+    field :password, :string, virtual: true, redact: true
     field :current_password, :string, virtual: true, redact: true
-    field :confirmed_at, :utc_datetime
 
     timestamps(type: :utc_datetime)
   end
@@ -15,8 +14,8 @@ defmodule PheonixPlayground.Accounts.User do
   @doc """
   A user changeset for registration.
 
-  It is important to validate the length of both email and password.
-  Otherwise databases may truncate the email without warnings, which
+  It is important to validate the length of both name and password.
+  Otherwise databases may truncate the name without warnings, which
   could lead to unpredictable or insecure behaviour. Long passwords may
   also be very expensive to hash for certain algorithms.
 
@@ -29,32 +28,30 @@ defmodule PheonixPlayground.Accounts.User do
       validations on a LiveView form), this option can be set to `false`.
       Defaults to `true`.
 
-    * `:validate_email` - Validates the uniqueness of the email, in case
-      you don't want to validate the uniqueness of the email (like when
+    * `:validate_name` - Validates the uniqueness of the name, in case
+      you don't want to validate the uniqueness of the name (like when
       using this changeset for validations on a LiveView form before
       submitting the form), this option can be set to `false`.
       Defaults to `true`.
   """
   def registration_changeset(user, attrs, opts \\ []) do
     user
-    |> cast(attrs, [:email, :password])
-    |> validate_email(opts)
+    |> cast(attrs, [:name, :password])
+    |> validate_name(opts)
     |> validate_password(opts)
   end
 
-  defp validate_email(changeset, opts) do
+  defp validate_name(changeset, opts) do
     changeset
-    |> validate_required([:email])
-    |> validate_format(:email, ~r/^[^\s]+@[^\s]+$/, message: "must have the @ sign and no spaces")
-    |> validate_length(:email, max: 160)
-    |> maybe_validate_unique_email(opts)
+    |> validate_required([:name])
+    # |> validate_length(:name, max: 160)
+    |> maybe_validate_unique_name(opts)
   end
 
   defp validate_password(changeset, opts) do
     changeset
     |> validate_required([:password])
-    |> validate_length(:password, min: 12, max: 72)
-    # Examples of additional password validation:
+    # |> validate_length(:password, min: 12, max: 72)
     # |> validate_format(:password, ~r/[a-z]/, message: "at least one lower case character")
     # |> validate_format(:password, ~r/[A-Z]/, message: "at least one upper case character")
     # |> validate_format(:password, ~r/[!?@#$%^&*_0-9]/, message: "at least one digit or punctuation character")
@@ -67,10 +64,6 @@ defmodule PheonixPlayground.Accounts.User do
 
     if hash_password? && password && changeset.valid? do
       changeset
-      # If using Bcrypt, then further validate it is at most 72 bytes long
-      |> validate_length(:password, max: 72, count: :bytes)
-      # Hashing could be done with `Ecto.Changeset.prepare_changes/2`, but that
-      # would keep the database transaction open longer and hurt performance.
       |> put_change(:hashed_password, Bcrypt.hash_pwd_salt(password))
       |> delete_change(:password)
     else
@@ -78,28 +71,28 @@ defmodule PheonixPlayground.Accounts.User do
     end
   end
 
-  defp maybe_validate_unique_email(changeset, opts) do
-    if Keyword.get(opts, :validate_email, true) do
+  defp maybe_validate_unique_name(changeset, opts) do
+    if Keyword.get(opts, :validate_name, true) do
       changeset
-      |> unsafe_validate_unique(:email, PheonixPlayground.Repo)
-      |> unique_constraint(:email)
+      |> unsafe_validate_unique(:name, PheonixPlayground.Repo)
+      |> unique_constraint(:name)
     else
       changeset
     end
   end
 
   @doc """
-  A user changeset for changing the email.
+  A user changeset for changing the name.
 
-  It requires the email to change otherwise an error is added.
+  It requires the name to change otherwise an error is added.
   """
-  def email_changeset(user, attrs, opts \\ []) do
+  def name_changeset(user, attrs, opts \\ []) do
     user
-    |> cast(attrs, [:email])
-    |> validate_email(opts)
+    |> cast(attrs, [:name])
+    |> validate_name(opts)
     |> case do
-      %{changes: %{email: _}} = changeset -> changeset
-      %{} = changeset -> add_error(changeset, :email, "did not change")
+      %{changes: %{name: _}} = changeset -> changeset
+      %{} = changeset -> add_error(changeset, :name, "did not change")
     end
   end
 
@@ -120,14 +113,6 @@ defmodule PheonixPlayground.Accounts.User do
     |> cast(attrs, [:password])
     |> validate_confirmation(:password, message: "does not match password")
     |> validate_password(opts)
-  end
-
-  @doc """
-  Confirms the account by setting `confirmed_at`.
-  """
-  def confirm_changeset(user) do
-    now = DateTime.utc_now() |> DateTime.truncate(:second)
-    change(user, confirmed_at: now)
   end
 
   @doc """

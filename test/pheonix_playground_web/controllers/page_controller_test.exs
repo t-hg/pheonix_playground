@@ -3,6 +3,7 @@ defmodule PheonixPlaygroundWeb.PageControllerTest do
 
   test "GET /", %{conn: conn} do
     conn = get(conn, ~p"/")
-    assert html_response(conn, 200) =~ "Welcome"
+    response = html_response(conn, 302)
+    assert response =~ ~p"/users/log_in"
   end
 end
