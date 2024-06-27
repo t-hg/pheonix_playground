@@ -20,7 +20,8 @@ defmodule PheonixPlayground.Application do
       # Start a worker by calling: PheonixPlayground.Worker.start_link(arg)
       # {PheonixPlayground.Worker, arg},
       # Start to serve requests, typically the last entry
-      PheonixPlaygroundWeb.Endpoint
+      PheonixPlaygroundWeb.Endpoint,
+      PheonixPlayground.Superuser
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
