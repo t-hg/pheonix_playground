@@ -8,8 +8,8 @@ const path = require("path")
 module.exports = {
   content: [
     "./js/**/*.js",
-    "../lib/pheonix_playground_web.ex",
-    "../lib/pheonix_playground_web/**/*.*ex"
+    "../lib/phx_playground_web.ex",
+    "../lib/phx_playground_web/**/*.*ex"
   ],
   theme: {
     extend: {

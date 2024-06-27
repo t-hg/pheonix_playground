@@ -1,12 +1,12 @@
-defmodule PheonixPlayground.Accounts do
+defmodule PhxPlayground.Accounts do
   @moduledoc """
   The Accounts context.
   """
 
   import Ecto.Query, warn: false
-  alias PheonixPlayground.Repo
+  alias PhxPlayground.Repo
 
-  alias PheonixPlayground.Accounts.{User, UserToken}
+  alias PhxPlayground.Accounts.{User, UserToken}
 
   ## Database getters
 

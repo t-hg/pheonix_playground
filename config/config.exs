@@ -7,19 +7,19 @@
 # General application configuration
 import Config
 
-config :pheonix_playground,
-  ecto_repos: [PheonixPlayground.Repo],
+config :phx_playground,
+  ecto_repos: [PhxPlayground.Repo],
   generators: [timestamp_type: :utc_datetime]
 
 # Configures the endpoint
-config :pheonix_playground, PheonixPlaygroundWeb.Endpoint,
+config :phx_playground, PhxPlaygroundWeb.Endpoint,
   url: [host: "localhost"],
   adapter: Bandit.PhoenixAdapter,
   render_errors: [
-    formats: [html: PheonixPlaygroundWeb.ErrorHTML, json: PheonixPlaygroundWeb.ErrorJSON],
+    formats: [html: PhxPlaygroundWeb.ErrorHTML, json: PhxPlaygroundWeb.ErrorJSON],
     layout: false
   ],
-  pubsub_server: PheonixPlayground.PubSub,
+  pubsub_server: PhxPlayground.PubSub,
   live_view: [signing_salt: "Sz/Qyc+k"]
 
 # Configures the mailer
@@ -29,12 +29,12 @@ config :pheonix_playground, PheonixPlaygroundWeb.Endpoint,
 #
 # For production it's recommended to configure a different adapter
 # at the `config/runtime.exs`.
-config :pheonix_playground, PheonixPlayground.Mailer, adapter: Swoosh.Adapters.Local
+config :phx_playground, PhxPlayground.Mailer, adapter: Swoosh.Adapters.Local
 
 # Configure esbuild (the version is required)
 config :esbuild,
   version: "0.17.11",
-  pheonix_playground: [
+  phx_playground: [
     args:
       ~w(js/app.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
     cd: Path.expand("../assets", __DIR__),
@@ -44,7 +44,7 @@ config :esbuild,
 # Configure tailwind (the version is required)
 config :tailwind,
   version: "3.4.3",
-  pheonix_playground: [
+  phx_playground: [
     args: ~w(
       --config=tailwind.config.js
       --input=css/app.css

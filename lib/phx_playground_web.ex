@@ -1,12 +1,12 @@
-defmodule PheonixPlaygroundWeb do
+defmodule PhxPlaygroundWeb do
   @moduledoc """
   The entrypoint for defining your web interface, such
   as controllers, components, channels, and so on.
 
   This can be used in your application as:
 
-      use PheonixPlaygroundWeb, :controller
-      use PheonixPlaygroundWeb, :html
+      use PhxPlaygroundWeb, :controller
+      use PhxPlaygroundWeb, :html
 
   The definitions below will be executed for every controller,
   component, etc, so keep them short and clean, focused
@@ -40,10 +40,10 @@ defmodule PheonixPlaygroundWeb do
     quote do
       use Phoenix.Controller,
         formats: [:html, :json],
-        layouts: [html: PheonixPlaygroundWeb.Layouts]
+        layouts: [html: PhxPlaygroundWeb.Layouts]
 
       import Plug.Conn
-      import PheonixPlaygroundWeb.Gettext
+      import PhxPlaygroundWeb.Gettext
 
       unquote(verified_routes())
     end
@@ -52,7 +52,7 @@ defmodule PheonixPlaygroundWeb do
   def live_view do
     quote do
       use Phoenix.LiveView,
-        layout: {PheonixPlaygroundWeb.Layouts, :app}
+        layout: {PhxPlaygroundWeb.Layouts, :app}
 
       unquote(html_helpers())
     end
@@ -84,8 +84,8 @@ defmodule PheonixPlaygroundWeb do
       # HTML escaping functionality
       import Phoenix.HTML
       # Core UI components and translation
-      import PheonixPlaygroundWeb.CoreComponents
-      import PheonixPlaygroundWeb.Gettext
+      import PhxPlaygroundWeb.CoreComponents
+      import PhxPlaygroundWeb.Gettext
 
       # Shortcut for generating JS commands
       alias Phoenix.LiveView.JS
@@ -98,9 +98,9 @@ defmodule PheonixPlaygroundWeb do
   def verified_routes do
     quote do
       use Phoenix.VerifiedRoutes,
-        endpoint: PheonixPlaygroundWeb.Endpoint,
-        router: PheonixPlaygroundWeb.Router,
-        statics: PheonixPlaygroundWeb.static_paths()
+        endpoint: PhxPlaygroundWeb.Endpoint,
+        router: PhxPlaygroundWeb.Router,
+        statics: PhxPlaygroundWeb.static_paths()
     end
   end
 

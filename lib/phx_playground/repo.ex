@@ -1,5 +1,5 @@
-defmodule PheonixPlayground.Repo do
+defmodule PhxPlayground.Repo do
   use Ecto.Repo,
-    otp_app: :pheonix_playground,
+    otp_app: :phx_playground,
     adapter: Ecto.Adapters.SQLite3
 end

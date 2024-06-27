@@ -1,7 +1,7 @@
-defmodule PheonixPlayground.Superuser do
+defmodule PhxPlayground.Superuser do
   use GenServer
 
-  alias PheonixPlayground.Accounts
+  alias PhxPlayground.Accounts
 
   def start_link(_) do
     GenServer.start_link(__MODULE__, %{})

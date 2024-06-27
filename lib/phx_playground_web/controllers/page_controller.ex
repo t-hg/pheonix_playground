@@ -1,5 +1,5 @@
-defmodule PheonixPlaygroundWeb.PageController do
-  use PheonixPlaygroundWeb, :controller
+defmodule PhxPlaygroundWeb.PageController do
+  use PhxPlaygroundWeb, :controller
 
   def home(conn, _params) do
     # The home page is often custom made,

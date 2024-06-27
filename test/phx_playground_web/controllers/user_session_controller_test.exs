@@ -1,7 +1,7 @@
-defmodule PheonixPlaygroundWeb.UserSessionControllerTest do
-  use PheonixPlaygroundWeb.ConnCase
+defmodule PhxPlaygroundWeb.UserSessionControllerTest do
+  use PhxPlaygroundWeb.ConnCase
 
-  import PheonixPlayground.AccountsFixtures
+  import PhxPlayground.AccountsFixtures
 
   setup do
     %{user: user_fixture()}
@@ -47,7 +47,7 @@ defmodule PheonixPlaygroundWeb.UserSessionControllerTest do
           }
         })
 
-      assert conn.resp_cookies["_pheonix_playground_web_user_remember_me"]
+      assert conn.resp_cookies["_phx_playground_web_user_remember_me"]
       assert redirected_to(conn) == ~p"/"
     end
 

@@ -1,12 +1,12 @@
-defmodule PheonixPlaygroundWeb.Endpoint do
-  use Phoenix.Endpoint, otp_app: :pheonix_playground
+defmodule PhxPlaygroundWeb.Endpoint do
+  use Phoenix.Endpoint, otp_app: :phx_playground
 
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
   # Set :encryption_salt if you would also like to encrypt it.
   @session_options [
     store: :cookie,
-    key: "_pheonix_playground_key",
+    key: "_phx_playground_key",
     signing_salt: "Xp8p66r5",
     same_site: "Lax"
   ]
@@ -21,9 +21,9 @@ defmodule PheonixPlaygroundWeb.Endpoint do
   # when deploying your static files in production.
   plug Plug.Static,
     at: "/",
-    from: :pheonix_playground,
+    from: :phx_playground,
     gzip: false,
-    only: PheonixPlaygroundWeb.static_paths()
+    only: PhxPlaygroundWeb.static_paths()
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
@@ -31,7 +31,7 @@ defmodule PheonixPlaygroundWeb.Endpoint do
     socket "/phoenix/live_reload/socket", Phoenix.LiveReloader.Socket
     plug Phoenix.LiveReloader
     plug Phoenix.CodeReloader
-    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :pheonix_playground
+    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :phx_playground
   end
 
   plug Phoenix.LiveDashboard.RequestLogger,
@@ -49,5 +49,5 @@ defmodule PheonixPlaygroundWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
-  plug PheonixPlaygroundWeb.Router
+  plug PhxPlaygroundWeb.Router
 end

@@ -1,4 +1,4 @@
-defmodule PheonixPlayground.Application do
+defmodule PhxPlayground.Application do
   # See https://hexdocs.pm/elixir/Application.html
   # for more information on OTP Applications
   @moduledoc false
@@ -8,25 +8,25 @@ defmodule PheonixPlayground.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      PheonixPlaygroundWeb.Telemetry,
-      PheonixPlayground.Repo,
+      PhxPlaygroundWeb.Telemetry,
+      PhxPlayground.Repo,
       {Ecto.Migrator,
-        repos: Application.fetch_env!(:pheonix_playground, :ecto_repos),
+        repos: Application.fetch_env!(:phx_playground, :ecto_repos),
         skip: skip_migrations?()},
-      {DNSCluster, query: Application.get_env(:pheonix_playground, :dns_cluster_query) || :ignore},
-      {Phoenix.PubSub, name: PheonixPlayground.PubSub},
+      {DNSCluster, query: Application.get_env(:phx_playground, :dns_cluster_query) || :ignore},
+      {Phoenix.PubSub, name: PhxPlayground.PubSub},
       # Start the Finch HTTP client for sending emails
-      {Finch, name: PheonixPlayground.Finch},
-      # Start a worker by calling: PheonixPlayground.Worker.start_link(arg)
-      # {PheonixPlayground.Worker, arg},
+      {Finch, name: PhxPlayground.Finch},
+      # Start a worker by calling: PhxPlayground.Worker.start_link(arg)
+      # {PhxPlayground.Worker, arg},
       # Start to serve requests, typically the last entry
-      PheonixPlaygroundWeb.Endpoint,
-      PheonixPlayground.Superuser
+      PhxPlaygroundWeb.Endpoint,
+      PhxPlayground.Superuser
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
-    opts = [strategy: :one_for_one, name: PheonixPlayground.Supervisor]
+    opts = [strategy: :one_for_one, name: PhxPlayground.Supervisor]
     Supervisor.start_link(children, opts)
   end
 
@@ -34,7 +34,7 @@ defmodule PheonixPlayground.Application do
   # whenever the application is updated.
   @impl true
   def config_change(changed, _new, removed) do
-    PheonixPlaygroundWeb.Endpoint.config_change(changed, removed)
+    PhxPlaygroundWeb.Endpoint.config_change(changed, removed)
     :ok
   end
 

@@ -1,11 +1,11 @@
-defmodule PheonixPlaygroundWeb.Gettext do
+defmodule PhxPlaygroundWeb.Gettext do
   @moduledoc """
   A module providing Internationalization with a gettext-based API.
 
   By using [Gettext](https://hexdocs.pm/gettext),
   your module gains a set of macros for translations, for example:
 
-      import PheonixPlaygroundWeb.Gettext
+      import PhxPlaygroundWeb.Gettext
 
       # Simple translation
       gettext("Here is the string to translate")
@@ -20,5 +20,5 @@ defmodule PheonixPlaygroundWeb.Gettext do
 
   See the [Gettext Docs](https://hexdocs.pm/gettext) for detailed usage.
   """
-  use Gettext, otp_app: :pheonix_playground
+  use Gettext, otp_app: :phx_playground
 end

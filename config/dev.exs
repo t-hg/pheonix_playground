@@ -1,8 +1,8 @@
 import Config
 
 # Configure your database
-config :pheonix_playground, PheonixPlayground.Repo,
-  database: Path.expand("../pheonix_playground_dev.db", __DIR__),
+config :phx_playground, PhxPlayground.Repo,
+  database: Path.expand("../phx_playground_dev.db", __DIR__),
   pool_size: 5,
   stacktrace: true,
   show_sensitive_data_on_connection_error: true
@@ -13,7 +13,7 @@ config :pheonix_playground, PheonixPlayground.Repo,
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we can use it
 # to bundle .js and .css sources.
-config :pheonix_playground, PheonixPlaygroundWeb.Endpoint,
+config :phx_playground, PhxPlaygroundWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
   http: [ip: {127, 0, 0, 1}, port: 4000],
@@ -22,8 +22,8 @@ config :pheonix_playground, PheonixPlaygroundWeb.Endpoint,
   debug_errors: true,
   secret_key_base: "ODfxg1+8c9GYxBECYmLBznmRW65nJbSeggKd5Iuu0TMN9MGW8PG49Vr487wlfAXB",
   watchers: [
-    esbuild: {Esbuild, :install_and_run, [:pheonix_playground, ~w(--sourcemap=inline --watch)]},
-    tailwind: {Tailwind, :install_and_run, [:pheonix_playground, ~w(--watch)]}
+    esbuild: {Esbuild, :install_and_run, [:phx_playground, ~w(--sourcemap=inline --watch)]},
+    tailwind: {Tailwind, :install_and_run, [:phx_playground, ~w(--watch)]}
   ]
 
 # ## SSL Support
@@ -50,17 +50,17 @@ config :pheonix_playground, PheonixPlaygroundWeb.Endpoint,
 # different ports.
 
 # Watch static and templates for browser reloading.
-config :pheonix_playground, PheonixPlaygroundWeb.Endpoint,
+config :phx_playground, PhxPlaygroundWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r"priv/static/(?!uploads/).*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
-      ~r"lib/pheonix_playground_web/(controllers|live|components)/.*(ex|heex)$"
+      ~r"lib/phx_playground_web/(controllers|live|components)/.*(ex|heex)$"
     ]
   ]
 
 # Enable dev routes for dashboard and mailbox
-config :pheonix_playground, dev_routes: true
+config :phx_playground, dev_routes: true
 
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"

@@ -1,7 +1,7 @@
-defmodule PheonixPlayground.Accounts.UserToken do
+defmodule PhxPlayground.Accounts.UserToken do
   use Ecto.Schema
   import Ecto.Query
-  alias PheonixPlayground.Accounts.UserToken
+  alias PhxPlayground.Accounts.UserToken
 
   @rand_size 32
   @session_validity_in_days 60
@@ -9,7 +9,7 @@ defmodule PheonixPlayground.Accounts.UserToken do
   schema "users_tokens" do
     field :token, :binary
     field :context, :string
-    belongs_to :user, PheonixPlayground.Accounts.User
+    belongs_to :user, PhxPlayground.Accounts.User
 
     timestamps(type: :utc_datetime, updated_at: false)
   end

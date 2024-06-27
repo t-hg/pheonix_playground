@@ -1,10 +1,10 @@
-defmodule PheonixPlayground.AccountsTest do
-  use PheonixPlayground.DataCase
+defmodule PhxPlayground.AccountsTest do
+  use PhxPlayground.DataCase
 
-  alias PheonixPlayground.Accounts
+  alias PhxPlayground.Accounts
 
-  import PheonixPlayground.AccountsFixtures
-  alias PheonixPlayground.Accounts.{User, UserToken}
+  import PhxPlayground.AccountsFixtures
+  alias PhxPlayground.Accounts.{User, UserToken}
 
   describe "get_user_by_name/1" do
     test "does not return the user if the name does not exist" do

@@ -1,4 +1,4 @@
-defmodule PheonixPlayground.Accounts.User do
+defmodule PhxPlayground.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -74,7 +74,7 @@ defmodule PheonixPlayground.Accounts.User do
   defp maybe_validate_unique_name(changeset, opts) do
     if Keyword.get(opts, :validate_name, true) do
       changeset
-      |> unsafe_validate_unique(:name, PheonixPlayground.Repo)
+      |> unsafe_validate_unique(:name, PhxPlayground.Repo)
       |> unique_constraint(:name)
     else
       changeset
@@ -121,7 +121,7 @@ defmodule PheonixPlayground.Accounts.User do
   If there is no user or the user doesn't have a password, we call
   `Bcrypt.no_user_verify/0` to avoid timing attacks.
   """
-  def valid_password?(%PheonixPlayground.Accounts.User{hashed_password: hashed_password}, password)
+  def valid_password?(%PhxPlayground.Accounts.User{hashed_password: hashed_password}, password)
       when is_binary(hashed_password) and byte_size(password) > 0 do
     Bcrypt.verify_pass(password, hashed_password)
   end

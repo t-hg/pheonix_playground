@@ -1,17 +1,17 @@
-defmodule PheonixPlaygroundWeb.UserAuthTest do
-  use PheonixPlaygroundWeb.ConnCase
+defmodule PhxPlaygroundWeb.UserAuthTest do
+  use PhxPlaygroundWeb.ConnCase
 
   alias Phoenix.LiveView
-  alias PheonixPlayground.Accounts
-  alias PheonixPlaygroundWeb.UserAuth
-  import PheonixPlayground.AccountsFixtures
+  alias PhxPlayground.Accounts
+  alias PhxPlaygroundWeb.UserAuth
+  import PhxPlayground.AccountsFixtures
 
-  @remember_me_cookie "_pheonix_playground_web_user_remember_me"
+  @remember_me_cookie "_phx_playground_web_user_remember_me"
 
   setup %{conn: conn} do
     conn =
       conn
-      |> Map.replace!(:secret_key_base, PheonixPlaygroundWeb.Endpoint.config(:secret_key_base))
+      |> Map.replace!(:secret_key_base, PhxPlaygroundWeb.Endpoint.config(:secret_key_base))
       |> init_test_session(%{})
 
     %{user: user_fixture(), conn: conn}
@@ -66,7 +66,7 @@ defmodule PheonixPlaygroundWeb.UserAuthTest do
 
     test "broadcasts to the given live_socket_id", %{conn: conn} do
       live_socket_id = "users_sessions:abcdef-token"
-      PheonixPlaygroundWeb.Endpoint.subscribe(live_socket_id)
+      PhxPlaygroundWeb.Endpoint.subscribe(live_socket_id)
 
       conn
       |> put_session(:live_socket_id, live_socket_id)
@@ -164,7 +164,7 @@ defmodule PheonixPlaygroundWeb.UserAuthTest do
       session = conn |> put_session(:user_token, user_token) |> get_session()
 
       socket = %LiveView.Socket{
-        endpoint: PheonixPlaygroundWeb.Endpoint,
+        endpoint: PhxPlaygroundWeb.Endpoint,
         assigns: %{__changed__: %{}, flash: %{}}
       }
 
@@ -176,7 +176,7 @@ defmodule PheonixPlaygroundWeb.UserAuthTest do
       session = conn |> get_session()
 
       socket = %LiveView.Socket{
-        endpoint: PheonixPlaygroundWeb.Endpoint,
+        endpoint: PhxPlaygroundWeb.Endpoint,
         assigns: %{__changed__: %{}, flash: %{}}
       }
 

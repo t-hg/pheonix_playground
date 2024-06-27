@@ -1,7 +1,7 @@
-defmodule PheonixPlayground.AccountsFixtures do
+defmodule PhxPlayground.AccountsFixtures do
   @moduledoc """
   This module defines test helpers for creating
-  entities via the `PheonixPlayground.Accounts` context.
+  entities via the `PhxPlayground.Accounts` context.
   """
 
   def unique_user_name, do: "user#{System.unique_integer()}"
@@ -18,7 +18,7 @@ defmodule PheonixPlayground.AccountsFixtures do
     {:ok, user} =
       attrs
       |> valid_user_attributes()
-      |> PheonixPlayground.Accounts.register_user()
+      |> PhxPlayground.Accounts.register_user()
 
     user
   end

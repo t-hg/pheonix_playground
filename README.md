@@ -1,4 +1,4 @@
-# PheonixPlayground
+# PhxPlayground
 
 To start your Phoenix server:
 

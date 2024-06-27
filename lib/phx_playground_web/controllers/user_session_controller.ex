@@ -1,8 +1,8 @@
-defmodule PheonixPlaygroundWeb.UserSessionController do
-  use PheonixPlaygroundWeb, :controller
+defmodule PhxPlaygroundWeb.UserSessionController do
+  use PhxPlaygroundWeb, :controller
 
-  alias PheonixPlayground.Accounts
-  alias PheonixPlaygroundWeb.UserAuth
+  alias PhxPlayground.Accounts
+  alias PhxPlaygroundWeb.UserAuth
 
   def new(conn, _params) do
     render(conn, :new, error_message: nil)

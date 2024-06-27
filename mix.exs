@@ -1,9 +1,9 @@
-defmodule PheonixPlayground.MixProject do
+defmodule PhxPlayground.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :pheonix_playground,
+      app: :phx_playground,
       version: "0.1.0",
       elixir: "~> 1.14",
       elixirc_paths: elixirc_paths(Mix.env()),
@@ -18,7 +18,7 @@ defmodule PheonixPlayground.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {PheonixPlayground.Application, []},
+      mod: {PhxPlayground.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end
@@ -76,10 +76,10 @@ defmodule PheonixPlayground.MixProject do
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
       "assets.setup": ["tailwind.install --if-missing", "esbuild.install --if-missing"],
-      "assets.build": ["tailwind pheonix_playground", "esbuild pheonix_playground"],
+      "assets.build": ["tailwind phx_playground", "esbuild phx_playground"],
       "assets.deploy": [
-        "tailwind pheonix_playground --minify",
-        "esbuild pheonix_playground --minify",
+        "tailwind phx_playground --minify",
+        "esbuild phx_playground --minify",
         "phx.digest"
       ]
     ]

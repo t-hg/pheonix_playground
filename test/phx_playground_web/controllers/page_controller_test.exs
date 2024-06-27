@@ -1,5 +1,5 @@
-defmodule PheonixPlaygroundWeb.PageControllerTest do
-  use PheonixPlaygroundWeb.ConnCase
+defmodule PhxPlaygroundWeb.PageControllerTest do
+  use PhxPlaygroundWeb.ConnCase
 
   test "GET /", %{conn: conn} do
     conn = get(conn, ~p"/")

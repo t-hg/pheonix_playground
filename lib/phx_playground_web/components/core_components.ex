@@ -1,4 +1,4 @@
-defmodule PheonixPlaygroundWeb.CoreComponents do
+defmodule PhxPlaygroundWeb.CoreComponents do
   @moduledoc """
   Provides core UI components.
 
@@ -17,7 +17,7 @@ defmodule PheonixPlaygroundWeb.CoreComponents do
   use Phoenix.Component
 
   alias Phoenix.LiveView.JS
-  import PheonixPlaygroundWeb.Gettext
+  import PhxPlaygroundWeb.Gettext
 
   @doc """
   Renders a modal.
@@ -661,9 +661,9 @@ defmodule PheonixPlaygroundWeb.CoreComponents do
     # with our gettext backend as first argument. Translations are
     # available in the errors.po file (as we use the "errors" domain).
     if count = opts[:count] do
-      Gettext.dngettext(PheonixPlaygroundWeb.Gettext, "errors", msg, msg, count, opts)
+      Gettext.dngettext(PhxPlaygroundWeb.Gettext, "errors", msg, msg, count, opts)
     else
-      Gettext.dgettext(PheonixPlaygroundWeb.Gettext, "errors", msg, opts)
+      Gettext.dgettext(PhxPlaygroundWeb.Gettext, "errors", msg, opts)
     end
   end
 
