@@ -5,7 +5,7 @@ defmodule PhxPlayground.AccountsFixtures do
   """
 
   def unique_user_name, do: "user#{System.unique_integer()}"
-  def valid_user_password, do: "hello world!"
+  def valid_user_password, do: "Hell0 world!"
 
   def valid_user_attributes(attrs \\ %{}) do
     Enum.into(attrs, %{

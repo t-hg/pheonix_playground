@@ -1,0 +1,19 @@
+<div class="mx-auto max-w-sm">
+  <.header class="text-center">
+    Edit user profile
+  </.header>
+
+  <.simple_form :let={f} for={@conn.params["user"]} as={:user} action={~p"/profile/edit"} method="put">
+    <.error :if={@error_message}><%= @error_message %></.error>
+
+    <.input field={f[:current_password]} type="password" label="Current password" required />
+    <.input field={f[:new_password]} type="password" label="New password" required />
+    <.input field={f[:new_password_repeated]} type="password" label="Repeat new password" required />
+
+    <:actions>
+      <.button phx-disable-with="Updating..." class="w-full">
+        Update
+      </.button>
+    </:actions>
+  </.simple_form>
+</div>

@@ -8,8 +8,6 @@ defmodule PhxPlayground.Accounts do
 
   alias PhxPlayground.Accounts.{User, UserToken}
 
-  ## Database getters
-
   @doc """
   Gets a user by name.
 
@@ -60,28 +58,23 @@ defmodule PhxPlayground.Accounts do
   """
   def get_user!(id), do: Repo.get!(User, id)
 
-## User registration
-
-@doc """
-Registers a user.
-
-## Examples
-
-    iex> register_user(%{field: value})
-    {:ok, %User{}}
-
-    iex> register_user(%{field: bad_value})
-    {:error, %Ecto.Changeset{}}
-
-"""
-def register_user(attrs) do
-  %User{}
-  |> User.registration_changeset(attrs)
-  |> Repo.insert()
-end
-
-
-  ## Session
+  @doc """
+  Registers a user.
+  
+  ## Examples
+  
+      iex> register_user(%{field: value})
+      {:ok, %User{}}
+  
+      iex> register_user(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+  
+  """
+  def register_user(attrs) do
+    %User{}
+    |> User.registration_changeset(attrs)
+    |> Repo.insert()
+  end
 
   @doc """
   Generates a session token.
@@ -106,5 +99,14 @@ end
   def delete_user_session_token(token) do
     Repo.delete_all(UserToken.by_token_and_context_query(token, "session"))
     :ok
+  end
+
+  @doc """
+  Updates user password
+  """
+  def update_password(user, attrs) do
+    user
+    |> User.password_changeset(attrs)
+    |> Repo.update()
   end
 end

@@ -52,6 +52,9 @@ defmodule PhxPlaygroundWeb.Router do
     pipe_through [:browser, :require_authenticated_user]
 
     get "/", PageController, :home
+
+    get "/profile/edit", UserProfileController, :edit
+    put "/profile/edit", UserProfileController, :update
   end
 
   scope "/", PhxPlaygroundWeb do
