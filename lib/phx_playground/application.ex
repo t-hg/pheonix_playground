@@ -21,7 +21,7 @@ defmodule PhxPlayground.Application do
       # {PhxPlayground.Worker, arg},
       # Start to serve requests, typically the last entry
       PhxPlaygroundWeb.Endpoint,
-      PhxPlayground.Superuser
+      PhxPlayground.Admin,
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
