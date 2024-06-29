@@ -54,7 +54,6 @@ config :phx_playground, PhxPlaygroundWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r"priv/static/(?!uploads/).*(js|css|png|jpeg|jpg|gif|svg)$",
-      ~r"priv/gettext/.*(po)$",
       ~r"lib/phx_playground_web/(controllers|live|components)/.*(ex|heex)$"
     ]
   ]
